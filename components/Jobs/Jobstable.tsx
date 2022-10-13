@@ -40,6 +40,16 @@ const Jobstable = () => {
   return (
     <>
       <Flex justifyContent="space-between">
+        <Input
+          w={"80%"}
+          border="2px"
+          onChange={(e) => {
+            setFilterd(e.target.value);
+          }}
+          placeholder="Search..."
+          size="md"
+          type="text"
+        />
         <Link href="/new-job">
           <Button
             mb="2rem"
@@ -50,25 +60,6 @@ const Jobstable = () => {
             Post a new job
           </Button>
         </Link>
-
-        <Flex w="60%" justifyContent="space-between">
-          <Button
-            mr="1rem"
-            bgColor="blue.900"
-            textColor="white"
-            _hover={{ bgColor: "blue.700" }}
-          >
-            Search
-          </Button>
-          <Input
-            onChange={(e) => {
-              setFilterd(e.target.value);
-            }}
-            placeholder="Search..."
-            size="md"
-            type="text"
-          />
-        </Flex>
       </Flex>
       <Table size="lg">
         <Thead>
