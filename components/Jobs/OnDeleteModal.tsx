@@ -6,8 +6,8 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/modal";
-import { Alert, AlertIcon, Button, useDisclosure } from "@chakra-ui/react";
-import React from "react";
+import { Alert, AlertIcon, Button } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 type Props = {
   jobId: number;
@@ -16,9 +16,16 @@ type Props = {
 };
 
 const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
+  const toast = useToast();
   const deleteJob = () => {
     console.log("deleted", jobId);
     onClose();
+    toast({
+      title: "Job Deleted.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -29,7 +36,7 @@ const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
           <ModalHeader textColor="red.700">
             <Alert status="error">
               <AlertIcon />
-              Are You sure you want to delete this poste job? It will be deleted
+              Are You sure you want to delete this position? It will be deleted
               forever
             </Alert>
           </ModalHeader>
