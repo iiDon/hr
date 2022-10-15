@@ -41,8 +41,9 @@ const Jobstable = () => {
     <>
       <Flex justifyContent="space-between">
         <Input
-          w={"80%"}
-          border="2px"
+          w={"40%"}
+          borderColor='blue.900'
+          outline='px'
           onChange={(e) => {
             setFilterd(e.target.value);
           }}

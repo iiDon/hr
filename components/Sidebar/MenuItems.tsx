@@ -1,4 +1,4 @@
-import { Box, Flex, ListItem, Text } from "@chakra-ui/react";
+import {  Flex, ListItem, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -66,6 +66,7 @@ const MenuItems = () => {
             rounded={9}
             textColor="white"
           >
+            
             <Flex alignItems="center">
               {item.icon}
               <Text ml="1rem">{item.name}</Text>
