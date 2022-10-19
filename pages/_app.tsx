@@ -1,14 +1,27 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
-import Layout from "../components/Layout";
+import Layout from "../components/Layouts/Layout";
+import { ReactElement, useEffect } from "react";
+import { hasCookie, getCookie, deleteCookie } from "cookies-next";
+import { isAuthenticated } from "../helpers/auth";
+import { useRouter } from "next/router";
+import { NextPage } from "next";
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactElement;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
+
   return (
     <ChakraProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
     </ChakraProvider>
   );
 }

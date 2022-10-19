@@ -1,8 +1,8 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import React from "react";
 import { ReactNode } from "react";
-import Topbar from "./Topbar";
-import Sidebar from "./Sidebar/Sidebar";
+import Topbar from "../Topbar";
+import Sidebar from "../Sidebar/Sidebar";
 interface Props {
   children?: ReactNode;
   // any props that come into the component
