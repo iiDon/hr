@@ -24,7 +24,7 @@ const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
     onClose();
     deleteJob(jobId).then((res: { statusText: any; ok: boolean }) => {
       toast({
-        title: res.statusText,
+        title: res.statusText || "Error",
         status: `${res.ok ? "success" : "error"}`,
         duration: 3000,
         isClosable: true,

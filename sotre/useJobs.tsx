@@ -72,6 +72,7 @@ const useJobs = create<JobState>()((set, get) => ({
       const jobs = get().jobs.filter((job) => job.id !== id);
       set({ jobs });
     }
+    return res;
   },
 }));
 

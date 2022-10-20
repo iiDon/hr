@@ -33,7 +33,7 @@ const NewJob = () => {
 
       addJob(values).then((res: any) => {
         toast({
-          title: res.statusText,
+          title: res.statusText || "Error",
           status: `${res.ok ? "success" : "error"}`,
           duration: 6000,
           isClosable: false,
