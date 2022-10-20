@@ -14,7 +14,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { isAuthenticated } from "../../helpers/auth";
 const login = () => {
   // const login = useLogin((state) => state.login);
-
+  const router = useRouter();
   const URL = "http://138.197.180.181:8353/user/auth/login";
   const handleLogin = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,6 +41,7 @@ const login = () => {
         sameSite: "strict",
         expires: new Date(Date.now() + 60 * 60 * 24 * 7),
       });
+      router.push("/");
     }
   };
 

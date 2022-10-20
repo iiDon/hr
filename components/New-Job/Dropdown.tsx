@@ -6,8 +6,8 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ setJobState }: DropdownProps) => {
-  const menu = ["Public", "Draft"];
-  const [placeholder, setPlaceholder] = useState("Public");
+  const menu = ["public", "draft"];
+  const [placeholder, setPlaceholder] = useState("draft");
 
   const handleMenu = (item: string) => {
     setJobState(item);

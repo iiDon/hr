@@ -10,16 +10,21 @@ import {
   Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
-import { AiFillEdit, AiFillDelete, AiFillEye } from "react-icons/ai";
+import { useEffect, useState } from "react";
 import useJobs, { IJob } from "../../sotre/useJobs";
 import Actions from "./Actions";
-
 const Jobstable = () => {
-  const { jobs } = useJobs((state) => state);
+  const { jobs, fetchJobs } = useJobs((state) => state);
+
+  useEffect(() => {
+    if (jobs.length === 0) {
+      fetchJobs();
+    }
+  }, []);
+
   const header = ["Title", "Condidates", "Date", "Created At", "Actions"];
   const [filterd, setFilterd] = useState("");
-  // Header of the table
+  // // Header of the table
   const handleHeader = (item: string): JSX.Element => {
     return (
       <Th
@@ -37,13 +42,15 @@ const Jobstable = () => {
     );
   };
 
+  // console.log(jobs[0]?.condidate[0]);
+
   return (
     <>
       <Flex justifyContent="space-between">
         <Input
           w={"40%"}
-          borderColor='blue.900'
-          outline='px'
+          borderColor="blue.900"
+          outline="px"
           onChange={(e) => {
             setFilterd(e.target.value);
           }}
@@ -72,8 +79,8 @@ const Jobstable = () => {
         </Thead>
         <Tbody>
           {jobs
-            .filter((job) =>
-              job.title.toLowerCase().includes(filterd.toLowerCase())
+            ?.filter((job) =>
+              job.title?.toLowerCase().includes(filterd.toLowerCase())
             )
             .map((job: IJob) => {
               return (
@@ -86,7 +93,7 @@ const Jobstable = () => {
                     {job.status}
                   </Td>
                   <Td textAlign="center" border="1px">
-                    {job.created_at}
+                    {job.created?.substring(0, 10)}
                   </Td>
                   <Td textAlign="center" border="1px">
                     <Actions jobId={job.id} />

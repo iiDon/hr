@@ -7,7 +7,6 @@ export const middleware = async (request: NextRequest) => {
 
   const protectedRoutes = (): boolean => {
     const routes = ["/jobs", "/condidates", "/new-job"];
-
     return routes.includes(request.nextUrl.pathname);
   };
 
@@ -31,5 +30,6 @@ export const middleware = async (request: NextRequest) => {
         return NextResponse.redirect(new URL("/auth/login", request.url));
       }
     }
+    return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 };

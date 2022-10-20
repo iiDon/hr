@@ -13,29 +13,33 @@ import Dropdown from "../components/New-Job/Dropdown";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
+import useJobs, { IJob } from "../sotre/useJobs";
 const NewJob = () => {
   const router = useRouter();
-  const [jobState, setJobState] = useState("Public");
+  const [jobState, setJobState] = useState("draft");
+  const addJob = useJobs((state) => state.addJob);
   const toast = useToast();
   const formik = useFormik({
     initialValues: {
       title: "",
+      salary: null,
+      status: jobState,
+      endDate: null,
+      type: null,
       description: "",
-      startDate: new Date().toISOString().split("T")[0],
-      endDate: new Date().toISOString().split("T")[0],
-      salary: "",
-      type: "",
-      state: jobState,
     },
-    onSubmit: (values) => {
-      values.state = jobState;
-      router.push("/jobs");
-      toast({
-        title: "Job Added",
-        status: "success",
-        duration: 6000,
-        isClosable: false,
+    onSubmit: (values: IJob) => {
+      // values.status = jobState;
+
+      addJob(values).then((res: any) => {
+        toast({
+          title: res.statusText,
+          status: `${res.ok ? "success" : "error"}`,
+          duration: 6000,
+          isClosable: false,
+        });
+        router.push("/jobs");
+        console.log(res);
       });
     },
   });
@@ -61,40 +65,27 @@ const NewJob = () => {
           <Textarea
             border="1px"
             borderColor="black"
+            id="description"
+            name="description"
             onChange={formik.handleChange}
-            // value={formik.values.description}
+            value={formik.values.description}
           />
           <FormErrorMessage>Please Enter Description</FormErrorMessage>
         </FormControl>
-        <Flex w="100%">
-          <FormControl pr="1rem" isRequired>
-            <FormLabel htmlFor="startDate">Start Date:</FormLabel>
-            <Input
-              min={new Date().toISOString().split("T")[0]}
-              // disabled={checkDate(formik.values.endDate)}
-              name="startDate"
-              id="startDate"
-              type="date"
-              onChange={formik.handleChange}
-              value={formik.values.startDate}
-              border="1px"
-              borderColor="black"
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel htmlFor="endDate">End Date:</FormLabel>
-            <Input
-              min={new Date().toISOString().split("T")[0]}
-              type="date"
-              name="endDate"
-              id="endDate"
-              onChange={formik.handleChange}
-              value={formik.values.endDate}
-              border="1px"
-              borderColor="black"
-            />
-          </FormControl>
-        </Flex>
+
+        <FormControl isRequired>
+          <FormLabel htmlFor="endDate">End Date:</FormLabel>
+          <Input
+            min={new Date().toISOString().split("T")[0]}
+            type="date"
+            name="endDate"
+            id="endDate"
+            // onChange={formik.handleChange}
+            // value={formik.values.endDate}
+            border="1px"
+            borderColor="black"
+          />
+        </FormControl>
         <Flex w="100%">
           <FormControl pr="1rem">
             <FormLabel>Type:</FormLabel>
@@ -109,7 +100,7 @@ const NewJob = () => {
               id="salary"
               name="salary"
               onChange={formik.handleChange}
-              value={formik.values.salary}
+              value={formik.values.salary?.toString()}
             />
           </FormControl>
         </Flex>

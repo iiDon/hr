@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/modal";
 import { Alert, AlertIcon, Button } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
+import useJobs from "../../sotre/useJobs";
 
 type Props = {
   jobId: number;
@@ -16,16 +17,21 @@ type Props = {
 };
 
 const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
+  const { deleteJob, fetchJobs } = useJobs((state) => state);
+
   const toast = useToast();
-  const deleteJob = () => {
-    console.log("deleted", jobId);
+  const deleteAJob = () => {
     onClose();
-    toast({
-      title: "Job Deleted.",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
+    deleteJob(jobId).then((res: { statusText: any; ok: boolean }) => {
+      toast({
+        title: res.statusText,
+        status: `${res.ok ? "success" : "error"}`,
+        duration: 3000,
+        isClosable: true,
+      });
     });
+
+    fetchJobs();
   };
 
   return (
@@ -46,7 +52,7 @@ const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button onClick={deleteJob} bgColor="red.200" color="red.700">
+            <Button onClick={deleteAJob} bgColor="red.200" color="red.700">
               Delete
             </Button>
           </ModalFooter>
