@@ -14,10 +14,16 @@ import { useEffect, useState } from "react";
 import useJobs, { IJob } from "../../sotre/useJobs";
 import Actions from "./Actions";
 const Jobstable = () => {
-  const { jobs, fetchJobs } = useJobs((state) => state);
+  const jobs = useJobs((state) => state.jobs);
+  const fetchJobs = useJobs((state) => state.fetchJobs);
+  const isFetched = useJobs((state) => state.isFetched);
 
   useEffect(() => {
-    if (jobs.length === 0) {
+    console.log(jobs);
+    console.log(isFetched)
+
+    if (!isFetched) {
+
       fetchJobs();
     }
   }, []);

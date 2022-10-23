@@ -21,6 +21,7 @@ const NewJob = () => {
   const toast = useToast();
   const formik = useFormik({
     initialValues: {
+      id: undefined,
       title: "",
       salary: null,
       status: jobState,
@@ -28,19 +29,21 @@ const NewJob = () => {
       type: null,
       description: "",
     },
-    onSubmit: (values: IJob) => {
-      // values.status = jobState;
+    onSubmit: async (values: IJob) => {
+      values.status = jobState;
+      const res = await addJob(values);
 
-      addJob(values).then((res: any) => {
-        toast({
-          title: res.statusText || "Error",
-          status: `${res.ok ? "success" : "error"}`,
-          duration: 6000,
-          isClosable: false,
-        });
-        router.push("/jobs");
-        console.log(res);
+      toast({
+        title: res.statusText || "Error",
+        status: `${res.ok ? "success" : "error"}`,
+        duration: 6000,
+        isClosable: false,
       });
+
+      if (res.ok) {
+        router.push("/jobs");
+      }
+
     },
   });
 

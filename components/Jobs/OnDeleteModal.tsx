@@ -11,18 +11,19 @@ import { useToast } from "@chakra-ui/react";
 import useJobs from "../../sotre/useJobs";
 
 type Props = {
-  jobId: number;
+  jobId: number | undefined;
   isOpen: boolean;
   onClose: () => void;
 };
 
 const OnDeleteModal = ({ jobId, isOpen, onClose }: Props) => {
-  const { deleteJob, fetchJobs } = useJobs((state) => state);
+  const deleteJob = useJobs((state) => state.deleteJob);
+  const fetchJobs = useJobs((state) => state.fetchJobs);
 
   const toast = useToast();
   const deleteAJob = () => {
     onClose();
-    deleteJob(jobId).then((res: { statusText: any; ok: boolean }) => {
+    deleteJob(jobId!).then((res: { statusText: any; ok: boolean }) => {
       toast({
         title: res.statusText || "Error",
         status: `${res.ok ? "success" : "error"}`,
