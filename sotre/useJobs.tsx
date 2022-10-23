@@ -2,7 +2,7 @@ import { getCookie } from "cookies-next";
 import create from "zustand";
 
 export interface IJob {
-  id?: number;
+  id: number | undefined;
   title: string;
   salary?: string | null;
   status: string;
@@ -16,6 +16,7 @@ export interface IJob {
 interface JobState {
   count: number;
   next: any;
+  isFetched: boolean;
   jobs: IJob[];
   fetchJobs: () => any;
   addJob: (job: IJob) => any;
@@ -27,6 +28,7 @@ const URL = `http://138.197.180.181:8353/`;
 const useJobs = create<JobState>()((set, get) => ({
   count: 0,
   next: null,
+  isFetched: false,
   jobs: [],
   fetchJobs: async () => {
     const res = await fetch(URL + "job/job/all/", {
@@ -39,9 +41,10 @@ const useJobs = create<JobState>()((set, get) => ({
     const data = await res.json();
 
     set({
-      count: (await data.count) as number,
-      next: await data.next,
-      jobs: (await data.results) as IJob[],
+      count: data.count as number,
+      next: data.next,
+      jobs: data.results as IJob[],
+      isFetched: true,
     });
   },
   addJob: async (job: IJob) => {

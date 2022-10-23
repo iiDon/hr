@@ -3,7 +3,7 @@ import React from "react";
 import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
 import OnDeleteModal from "./OnDeleteModal";
 type Props = {
-  jobId: number;
+  jobId: number | undefined;
 };
 
 const Actions = ({ jobId }: Props) => {
