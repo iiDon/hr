@@ -1,54 +1,58 @@
 import {
-  Button,
-  Flex,
+  VStack,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
+  FormErrorMessage,
   Textarea,
-  useToast,
-  VStack,
+  Flex,
+  Button,
 } from "@chakra-ui/react";
-import Dropdown from "../components/New-Job/Dropdown";
 import { useFormik } from "formik";
-import { useState } from "react";
 import { useRouter } from "next/router";
-import useJobs, { IJob } from "../sotre/useJobs";
-const NewJob = () => {
+import Dropdown from "../../components/New-Job/Dropdown";
+import useJobs, { IJob } from "../../sotre/useJobs";
+
+const SingleJob = () => {
   const router = useRouter();
-  const [jobState, setJobState] = useState("draft");
-  const addJob = useJobs((state) => state.addJob);
-  const toast = useToast();
+  const { id } = router.query;
+  console.log(id);
+  const job = useJobs((state) =>
+    state.jobs.find((job) => job.id === Number(id))
+  );
+
+  if (!job) {
+    return <div>Job Not Found</div>;
+  }
+
+  const updateJob = useJobs((state) => state.updateJob);
+
   const formik = useFormik({
     initialValues: {
-      id: undefined,
-      title: "",
-      salary: undefined,
-      status: jobState,
-      endDate: undefined,
-      type: undefined,
-      description: "",
+      id: job.id,
+      title: job?.title,
+      salary: job?.salary,
+      status: job?.status,
+      endDate: job?.endDate,
+      type: job?.type,
+      description: job?.description,
     },
-    onSubmit: async (values: IJob) => {
-      values.status = jobState;
-      const res = await addJob(values);
-
-      toast({
-        title: res.statusText || "Error",
-        status: `${res.ok ? "success" : "error"}`,
-        duration: 6000,
-        isClosable: false,
-      });
-
-      if (res.ok) {
-        router.push("/jobs");
-      }
-
+    onSubmit: (values: IJob) => {
+      console.log(values);
+      //   updateJob(values).then((res: any) => {
+      //     toast({
+      //       title: res.statusText || "Error",
+      //       status: `${res.ok ? "success" : "error"}`,
+      //       duration: 6000,
+      //       isClosable: false,
+      //     });
+      //     router.push("/jobs");
+      //   });
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <>
       <VStack py="5rem" px="2rem" w="100%">
         <FormControl isRequired>
           <FormLabel htmlFor="title">Job Title:</FormLabel>
@@ -107,9 +111,9 @@ const NewJob = () => {
             />
           </FormControl>
         </Flex>
-        <FormControl isRequired>
+        {/* <FormControl isRequired>
           <Dropdown setJobState={setJobState} />
-        </FormControl>
+        </FormControl> */}
 
         <Button
           type="submit"
@@ -121,8 +125,8 @@ const NewJob = () => {
           Submit
         </Button>
       </VStack>
-    </form>
+    </>
   );
 };
 
-export default NewJob;
+export default SingleJob;

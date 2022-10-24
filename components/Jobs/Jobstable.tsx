@@ -8,15 +8,23 @@ import {
   Button,
   Flex,
   Input,
+  Box,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useJobs, { IJob } from "../../sotre/useJobs";
 import Actions from "./Actions";
+import Pagination from "./Pagination";
 const Jobstable = () => {
   const jobs = useJobs((state) => state.jobs);
   const fetchJobs = useJobs((state) => state.fetchJobs);
   const isFetched = useJobs((state) => state.isFetched);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 10;
+  const lastPostIndex = currentPage * jobsPerPage;
+  const firstPostIndex = lastPostIndex - jobsPerPage;
+  const currentJobs = jobs.slice(firstPostIndex, lastPostIndex);
 
   useEffect(() => {
     console.log(jobs);
@@ -28,8 +36,9 @@ const Jobstable = () => {
     }
   }, []);
 
-  const header = ["Title", "Condidates", "Date", "Created At", "Actions"];
+  const header = ["Title", "Condidates", "Status", "Close At", "Actions"];
   const [filterd, setFilterd] = useState("");
+
   // // Header of the table
   const handleHeader = (item: string): JSX.Element => {
     return (
@@ -47,8 +56,6 @@ const Jobstable = () => {
       </Th>
     );
   };
-
-  // console.log(jobs[0]?.condidate[0]);
 
   return (
     <>
@@ -84,7 +91,7 @@ const Jobstable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {jobs
+          {currentJobs
             ?.filter((job) =>
               job.title?.toLowerCase().includes(filterd.toLowerCase())
             )
@@ -96,19 +103,38 @@ const Jobstable = () => {
                     {job.condidate}
                   </Td>
                   <Td textAlign="center" border="1px">
-                    {job.status}
+                    <Box
+                      as="span"
+                      textColor="white"
+                      bgColor={
+                        job.status === "draft"
+                          ? "gray.500"
+                          : job.status === "open"
+                          ? "green.500"
+                          : "red.500"
+                      }
+                      p={2}
+                      rounded={5}
+                    >
+                      {job.status}
+                    </Box>
                   </Td>
                   <Td textAlign="center" border="1px">
-                    {job.created?.substring(0, 10)}
+                    {job.endDate?.substring(0, 10)}
                   </Td>
                   <Td textAlign="center" border="1px">
-                    <Actions jobId={job.id} />
+                    <Actions jobId={job.id!} />
                   </Td>
                 </Tr>
               );
             })}
         </Tbody>
       </Table>
+      <Pagination
+        totalJobs={jobs.length}
+        jobsPerPage={jobsPerPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 };

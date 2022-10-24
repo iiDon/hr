@@ -4,16 +4,17 @@ import create from "zustand";
 export interface IJob {
   id: number | undefined;
   title: string;
-  salary?: string | null;
+  salary?: string | undefined;
   status: string;
-  endDate?: string | null;
-  type?: string | null;
+  endDate?: string | undefined;
+  type?: string | undefined;
   created?: string;
   description?: string;
   condidate?: number[];
 }
 
 interface JobState {
+  [x: string]: any;
   count: number;
   next: any;
   isFetched: boolean;
@@ -21,6 +22,7 @@ interface JobState {
   fetchJobs: () => any;
   addJob: (job: IJob) => any;
   deleteJob: (id: number) => any;
+  updateJob: (job: IJob) => any;
 }
 
 const URL = `http://138.197.180.181:8353/`;
@@ -73,6 +75,21 @@ const useJobs = create<JobState>()((set, get) => ({
     });
     if (res.ok) {
       const jobs = get().jobs.filter((job) => job.id !== id);
+      set({ jobs });
+    }
+    return res;
+  },
+  updateJob: async (job: IJob) => {
+    const res = await fetch(URL + "/job/job/update/" + job.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${getCookie("token")}`,
+      },
+      body: JSON.stringify(job),
+    });
+    if (res.ok) {
+      const jobs = get().jobs.filter((job) => job.id !== job.id);
       set({ jobs });
     }
     return res;

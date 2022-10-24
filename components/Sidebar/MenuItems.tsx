@@ -1,4 +1,4 @@
-import {  Flex, ListItem, Text } from "@chakra-ui/react";
+import { Flex, ListItem, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -7,6 +7,8 @@ import {
   AiFillFolderOpen,
   AiFillFileUnknown,
 } from "react-icons/ai";
+import { deleteCookie } from "cookies-next";
+import router from "next/router";
 const MenuItems = () => {
   const [menu, setMenu] = useState([
     {
@@ -34,7 +36,20 @@ const MenuItems = () => {
       link: "/condidates",
       isActive: false,
     },
+    {
+      name: "Logout",
+      icon: <AiFillFileUnknown />,
+      link: "/auth/login",
+      isActive: false,
+      gap: true,
+      onClick: () => logout(),
+    },
   ]);
+
+  const logout = async () => {
+    deleteCookie("token");
+    router.push("/auth/login");
+  };
 
   const active = (name: string): any => {
     const newMenu = menu.map((item) => {
@@ -53,7 +68,6 @@ const MenuItems = () => {
       {menu.map((item) => (
         <Link href={item.link} key={item.name}>
           <ListItem
-            onClick={() => active(item.name)}
             _hover={{
               transition: "all 0.2s ease-in-out",
               bg: item.isActive ? "" : "blue.300",
@@ -63,10 +77,11 @@ const MenuItems = () => {
             p={4}
             bg={item.isActive ? "blue.700" : ""}
             my={3}
+            mt={item.gap ? 200 : 0}
             rounded={9}
             textColor="white"
+            onClick={item.onClick ? item.onClick : () => active(item.name)}
           >
-            
             <Flex alignItems="center">
               {item.icon}
               <Text ml="1rem">{item.name}</Text>

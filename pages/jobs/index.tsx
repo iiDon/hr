@@ -1,5 +1,5 @@
 import { TableContainer } from "@chakra-ui/react";
-import Jobstable from "../components/Jobs/Jobstable";
+import Jobstable from "../../components/Jobs/Jobstable";
 
 const Jobs = () => {
   return (

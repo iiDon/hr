@@ -1,4 +1,5 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
 import OnDeleteModal from "./OnDeleteModal";
@@ -8,14 +9,13 @@ type Props = {
 
 const Actions = ({ jobId }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const router = useRouter();
   const deleteJob = () => {
     onOpen();
-    console.log("delete", jobId);
   };
 
   const editJob = () => {
-    console.log("edit", jobId);
+    router.push(`/jobs/${jobId}`);
   };
 
   const viewJob = () => {
