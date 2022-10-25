@@ -80,7 +80,7 @@ const useJobs = create<JobState>()((set, get) => ({
     return res;
   },
   updateJob: async (job: IJob) => {
-    const res = await fetch(URL + "/job/job/update/" + job.id, {
+    const res = await fetch(URL + "/job/job/update/" + job.id + "/", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -88,10 +88,11 @@ const useJobs = create<JobState>()((set, get) => ({
       },
       body: JSON.stringify(job),
     });
-    if (res.ok) {
-      const jobs = get().jobs.filter((job) => job.id !== job.id);
-      set({ jobs });
-    }
+    // if (res.ok) {
+    //   const jobs = get().jobs.filter((job) => job.id !== job.id);
+    //   set({ jobs });
+    //   return res;
+    // }
     return res;
   },
 }));
