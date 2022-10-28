@@ -6,7 +6,12 @@ export const middleware = async (request: NextRequest) => {
   const hasToken = request.cookies.has("token");
 
   const protectedRoutes = (): boolean => {
-    const routes = ["/jobs", "/condidates", "/new-job"];
+    const routes = [
+      "/admin",
+      "/admin/jobs",
+      "/admin/condidates",
+      "/admin/jobs/new-job",
+    ];
     return routes.includes(request.nextUrl.pathname);
   };
 

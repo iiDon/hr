@@ -12,8 +12,8 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Dropdown from "../../../components/New-Job/Dropdown";
-import useJobs, { IJob } from "../../../sotre/useJobs";
+import Dropdown from "../../../../components/New-Job/Dropdown";
+import useJobs, { IJob } from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
   const router = useRouter();
@@ -50,7 +50,7 @@ const SingleJob = () => {
           isClosable: false,
         });
         fetchJobs();
-        router.push("/jobs");
+        router.push("/admin/jobs");
       });
     },
   });

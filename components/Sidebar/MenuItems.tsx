@@ -14,26 +14,26 @@ const MenuItems = () => {
     {
       name: "Home",
       icon: <AiOutlineHome />,
-      link: "/",
+      link: "/admin",
       isActive: true,
     },
 
     {
       name: "Jobs",
       icon: <AiFillFolderOpen />,
-      link: "/jobs",
+      link: "/admin/jobs",
       isActive: false,
     },
     {
       name: "Post a new job",
       icon: <AiFillFolderAdd />,
-      link: "/new-job",
+      link: "/admin/jobs/new-job",
       isActive: false,
     },
     {
       name: "All condidates",
       icon: <AiFillFileUnknown />,
-      link: "/condidates",
+      link: "/admin/condidates",
       isActive: false,
     },
     {

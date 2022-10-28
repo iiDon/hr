@@ -15,7 +15,7 @@ const Actions = ({ jobId }: Props) => {
   };
 
   const editJob = () => {
-    router.push(`/jobs/edit/${jobId}`);
+    router.push(`/admin/jobs/edit/${jobId}`);
   };
 
   const viewJob = () => {

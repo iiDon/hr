@@ -9,11 +9,11 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import Dropdown from "../components/New-Job/Dropdown";
+import Dropdown from "../../../components/New-Job/Dropdown";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import useJobs, { IJob } from "../sotre/useJobs";
+import useJobs, { IJob } from "../../../sotre/useJobs";
 const NewJob = () => {
   const router = useRouter();
   const [jobState, setJobState] = useState("draft");
@@ -41,9 +41,8 @@ const NewJob = () => {
       });
 
       if (res.ok) {
-        router.push("/jobs");
+        router.push("/admin/jobs");
       }
-
     },
   });
 

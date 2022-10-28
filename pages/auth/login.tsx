@@ -40,7 +40,7 @@ const login = () => {
         sameSite: "strict",
         expires: new Date(Date.now() + 60 * 60 * 24 * 7),
       });
-      router.push("/");
+      router.push("/admin");
     }
   };
 

@@ -9,6 +9,7 @@ import {
   Flex,
   Input,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -24,20 +25,31 @@ const Jobstable = () => {
   const jobsPerPage = 10;
   const lastPostIndex = currentPage * jobsPerPage;
   const firstPostIndex = lastPostIndex - jobsPerPage;
-  const currentJobs = jobs.slice(firstPostIndex, lastPostIndex);
+  const currentJobs = jobs?.slice(firstPostIndex, lastPostIndex);
 
   useEffect(() => {
     console.log(jobs);
-    console.log(isFetched)
+    console.log(isFetched);
 
     if (!isFetched) {
-
       fetchJobs();
     }
   }, []);
 
   const header = ["Title", "Condidates", "Status", "Close At", "Actions"];
   const [filterd, setFilterd] = useState("");
+
+  if (!isFetched) {
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.700"
+        size="xl"
+      />
+    );
+  }
 
   // // Header of the table
   const handleHeader = (item: string): JSX.Element => {
@@ -71,7 +83,7 @@ const Jobstable = () => {
           size="md"
           type="text"
         />
-        <Link href="/new-job">
+        <Link href="/admin/jobs/new-job">
           <Button
             mb="2rem"
             bgColor="blue.900"
@@ -100,7 +112,7 @@ const Jobstable = () => {
                 <Tr key={job.id} textColor="blue.900">
                   <Td border="1px">{job.title}</Td>
                   <Td textAlign="center" border="1px">
-                    {job.condidate}
+                    {job.condidate?.length}
                   </Td>
                   <Td textAlign="center" border="1px">
                     <Box
@@ -131,7 +143,7 @@ const Jobstable = () => {
         </Tbody>
       </Table>
       <Pagination
-        totalJobs={jobs.length}
+        totalJobs={jobs?.length}
         jobsPerPage={jobsPerPage}
         setCurrentPage={setCurrentPage}
       />
