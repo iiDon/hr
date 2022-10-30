@@ -67,6 +67,7 @@ const Login = () => {
           <FormControl>
             <FormLabel>Email</FormLabel>
             <Input
+              isRequired
               type="email"
               name="email"
               id="email"
@@ -77,6 +78,7 @@ const Login = () => {
           <FormControl>
             <FormLabel>Password</FormLabel>
             <Input
+              isRequired
               type="password"
               name="password"
               id="password"
