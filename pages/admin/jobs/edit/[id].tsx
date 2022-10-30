@@ -11,25 +11,21 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import Dropdown from "../../../../components/New-Job/Dropdown";
-import useJobs, { IJob } from "../../../../sotre/useJobs";
+import useJobs from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
   const router = useRouter();
   const { id } = router.query;
+  const updateJob = useJobs((state) => state.updateJob);
   const toast = useToast();
   const job = useJobs((state) =>
     state.jobs.find((job) => job.id === Number(id))
   );
   const fetchJobs = useJobs((state) => state.fetchJobs);
-  const [jobState, setJobState] = useState(job?.status);
 
   if (!job) {
     return <div>Job Not Found</div>;
   }
-
-  const updateJob = useJobs((state) => state.updateJob);
 
   const formik = useFormik({
     initialValues: {
