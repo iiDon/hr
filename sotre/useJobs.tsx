@@ -3,7 +3,7 @@ import create from "zustand";
 
 export interface IJob {
   id: number | undefined;
-  title: string;
+  title: string ;
   salary?: string | undefined;
   status: string;
   endDate?: string | undefined;

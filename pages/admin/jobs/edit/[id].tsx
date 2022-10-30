@@ -31,48 +31,32 @@ const SingleJob = () => {
   );
 
 
-  // const [currentJob, setJob] = useState<IJob | null>({
-  //   id: job?.id,
-  //   title: job?.title,
-  //   description: job?.description,
-  //   salary: job?.salary,
-  //   status: job!?.status,
-  //   endDate: job?.endDate,
-  //   type: job?.type, 
-  // });
-
-
 
 
 
   const formik = useFormik({
     initialValues: {
-      id: job!?.id,
-      title: job!?.title,
-      salary: job!?.salary,
-      status: job!?.status,
-      endDate: job!?.endDate,
-      type: job!?.type,
-      description: job!?.description,
+      id: 0,
+      title: 'job?.title',
+      salary: 'job?.salary',
+      status: 'job?.status',
+      endDate: 'job?.endDate',
+      type: 'job?.type',
+      description: 'job?.description',
     },
     onSubmit: (values) => {
       console.log(values);
 
-
-
-
-
-
-      updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
-        toast({
-          title: (await res?.statusText) || "Error",
-          status: `${res.ok ? "success" : "error"}`,
-          duration: 6000,
-          isClosable: false,
-        });
-        fetchJobs();
-        router.push("/admin/jobs");
-      });
+      // updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
+      //   toast({
+      //     title: (await res?.statusText) || "Error",
+      //     status: `${res.ok ? "success" : "error"}`,
+      //     duration: 6000,
+      //     isClosable: false,
+      //   });
+      //   fetchJobs();
+      //   router.push("/admin/jobs");
+      // });
 
 
 
@@ -85,10 +69,11 @@ const SingleJob = () => {
     },
   });
 
+
+
   if (!job) {
     return <Text>No Job</Text>;
   }
-
 
 
 
