@@ -23,10 +23,11 @@ const SingleJob = () => {
   );
   const fetchJobs = useJobs((state) => state.fetchJobs);
 
-  if (!job) {
-    return <div>Job Not Found</div>;
-  }
+    if (!job) {
+      return <div>Job Not Found</div>;
+    }
 
+  
   const formik = useFormik({
     initialValues: {
       id: job.id,
@@ -50,6 +51,7 @@ const SingleJob = () => {
       });
     },
   });
+
 
   return (
     <>
