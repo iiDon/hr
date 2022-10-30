@@ -13,6 +13,7 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { IJob } from "../../../../hr/sotre/useJobs";
 import useJobs from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
@@ -28,18 +29,30 @@ const SingleJob = () => {
   const job = useJobs((state) =>
     state.jobs.find((job) => job.id === Number(id))
   );
+
+
+
+
+
+
   const formik = useFormik({
     initialValues: {
-      id: job?.id!,
-      title: job?.title!,
-      salary: job?.salary!,
-      status: job?.status!,
-      endDate: job?.endDate!,
-      type: job?.type!,
-      description: job?.description!,
+      id: job!.id,
+      title: job!.title,
+      salary: job!.salary,
+      status: job!.status,
+      endDate: job!.endDate,
+      type: job!.type,
+      description: job!.description,
     },
     onSubmit: (values) => {
       console.log(values);
+
+
+
+
+
+
       updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
         toast({
           title: (await res?.statusText) || "Error",
@@ -50,12 +63,21 @@ const SingleJob = () => {
         fetchJobs();
         router.push("/admin/jobs");
       });
+
+
+
+
+
+
+
+
+
     },
   });
 
-  // if (!job) {
-  //   return <Text>Sorry There is no job with this number</Text>;
-  // }
+
+
+
 
   return (
     <>
