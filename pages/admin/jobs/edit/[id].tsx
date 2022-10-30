@@ -13,7 +13,6 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { IJob } from "../../../../hr/sotre/useJobs";
 import useJobs from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
