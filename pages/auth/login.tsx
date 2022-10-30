@@ -11,7 +11,7 @@ import {
 import { setCookie } from "cookies-next";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 
 const login = () => {
   // const login = useLogin((state) => state.login);
@@ -19,8 +19,8 @@ const login = () => {
   console.log(a);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<Boolean | string>(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Boolean | string>(false);
   const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/auth/login`;
   const handleLogin = async (values: { email: string; password: string }) => {
     const request = fetch(URL, {
