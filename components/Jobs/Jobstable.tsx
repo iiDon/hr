@@ -112,11 +112,10 @@ const Jobstable = () => {
                 <Tr key={job.id} textColor="blue.900">
                   <Td border="1px">{job.title}</Td>
                   <Td textAlign="center" border="1px">
-                    {job.condidate?.length}
+                    {job?.condidate?.length || 0}
                   </Td>
                   <Td textAlign="center" border="1px">
                     <Box
-                      as="span"
                       textColor="white"
                       bgColor={
                         job.status === "draft"

@@ -17,23 +17,7 @@ export const middleware = async (request: NextRequest) => {
 
   if (protectedRoutes()) {
     if (hasToken) {
-      const cookie = request.cookies.get("token");
-      const me = await fetch("http://138.197.180.181:8353/user/me", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${cookie}`,
-        },
-      });
-
-      if (me.ok) {
-        return NextResponse.next();
-      }
-
-      if (!me.ok) {
-        request.cookies.delete("token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
-      }
+      return NextResponse.next();
     }
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }

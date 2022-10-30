@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import useJobs, { IJob } from "../../../sotre/useJobs";
 const NewJob = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [jobState, setJobState] = useState("draft");
   const addJob = useJobs((state) => state.addJob);
   const toast = useToast();
@@ -30,8 +31,10 @@ const NewJob = () => {
       description: "",
     },
     onSubmit: async (values: IJob) => {
+      setLoading(true);
       values.status = jobState;
       const res = await addJob(values);
+      setLoading(false);
 
       toast({
         title: res.statusText || "Error",
@@ -111,6 +114,7 @@ const NewJob = () => {
         </FormControl>
 
         <Button
+          isLoading={loading}
           type="submit"
           bgColor="blue.900"
           textColor="white"

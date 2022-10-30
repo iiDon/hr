@@ -1,7 +1,7 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
 type Props = {
   condidateId: number | undefined;
 };

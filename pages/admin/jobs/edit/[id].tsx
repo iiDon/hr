@@ -88,7 +88,6 @@ const SingleJob = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="endDate">End Date:</FormLabel>
             <Input
-              min={new Date().toISOString().split("T")[0]}
               type="date"
               name="endDate"
               id="endDate"

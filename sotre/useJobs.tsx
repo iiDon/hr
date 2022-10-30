@@ -25,7 +25,7 @@ interface JobState {
   updateJob: (job: IJob) => any;
 }
 
-const URL = `http://138.197.180.181:8353/`;
+const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/`;
 
 const useJobs = create<JobState>()((set, get) => ({
   count: 0,

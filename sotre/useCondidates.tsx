@@ -73,7 +73,7 @@ export interface IEducation {
   lastUpdated: string;
 }
 
-const URL = `http://138.197.180.181:8353/`;
+const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/`;
 
 const useCondidates = create<ICondidateState>()((set, get) => ({
   count: 0,

@@ -6,18 +6,20 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
-import { hasCookie, setCookie, getCookie, deleteCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect } from "react";
-import Layout from "../../components/Layouts/Layout";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import { isAuthenticated } from "../../helpers/auth";
+import React, { ReactElement } from "react";
+
 const login = () => {
   // const login = useLogin((state) => state.login);
+  const a = process.env.BACKEND_URL;
+  console.log(a);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
-  const URL = "http://138.197.180.181:8353/user/auth/login";
+  const [loading, setLoading] = React.useState(false);
+  const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/auth/login`;
   const handleLogin = async (e: React.MouseEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     const request = fetch(URL, {
       method: "POST",
@@ -56,7 +58,7 @@ const login = () => {
             <FormLabel>Password</FormLabel>
             <Input type="password" />
           </FormControl>
-          <Button type="submit" w="100%">
+          <Button type="submit" w="100%" isLoading={loading}>
             Login
           </Button>
         </VStack>

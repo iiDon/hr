@@ -7,6 +7,7 @@ interface IPagination {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+
 const Pagination = ({
   totalJobs,
   jobsPerPage,
