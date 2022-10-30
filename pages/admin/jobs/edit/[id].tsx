@@ -29,9 +29,7 @@ const SingleJob = () => {
   );
 
 
-  // if (!job) {
-  //   return <Text>Sorry There is no job with this number</Text>;
-  // }
+
 
 
 
@@ -59,6 +57,10 @@ const SingleJob = () => {
       });
     },
   });
+
+  if (!job) {
+    return <Text>Sorry There is no job with this number</Text>;
+  }
 
 
 
