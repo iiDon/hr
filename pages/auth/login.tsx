@@ -13,13 +13,13 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import React, { ReactElement, useState } from "react";
 
-const login = () => {
-  const a = process.env.BACKEND_URL;
+const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Boolean | string>(false);
   const router = useRouter();
   const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/auth/login`;
   const handleLogin = async (values: { email: string; password: string }) => {
+    setLoading(true);
     const request = fetch(URL, {
       method: "POST",
       headers: {
@@ -32,7 +32,8 @@ const login = () => {
     });
     const response = await request;
     const data = await response.json();
-    console.log(data);
+    setLoading(false);
+
 
     if ((await request).status === 200) {
       setCookie("token", data.token, {
@@ -55,9 +56,7 @@ const login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      setLoading(true);
       handleLogin(values);
-      setLoading(false);
     },
   });
 
@@ -96,8 +95,8 @@ const login = () => {
   );
 };
 
-login.getLayout = function (page: ReactElement) {
+Login.getLayout = function (page: ReactElement) {
   return <>{page}</>;
 };
 
-export default login;
+export default Login;
