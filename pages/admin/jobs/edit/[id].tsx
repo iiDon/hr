@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IJob } from "../../../../hr/sotre/useJobs";
 import useJobs from "../../../../sotre/useJobs";
 
@@ -31,19 +31,29 @@ const SingleJob = () => {
   );
 
 
+  // const [currentJob, setJob] = useState<IJob | null>({
+  //   id: job?.id,
+  //   title: job?.title,
+  //   description: job?.description,
+  //   salary: job?.salary,
+  //   status: job!?.status,
+  //   endDate: job?.endDate,
+  //   type: job?.type, 
+  // });
+
 
 
 
 
   const formik = useFormik({
     initialValues: {
-      id: job!.id,
-      title: job!.title,
-      salary: job!.salary,
-      status: job!.status,
-      endDate: job!.endDate,
-      type: job!.type,
-      description: job!.description,
+      id: job!?.id,
+      title: job!?.title,
+      salary: job!?.salary,
+      status: job!?.status,
+      endDate: job!?.endDate,
+      type: job!?.type,
+      description: job!?.description,
     },
     onSubmit: (values) => {
       console.log(values);
@@ -74,6 +84,10 @@ const SingleJob = () => {
 
     },
   });
+
+  if (!job) {
+    return <Text>No Job</Text>;
+  }
 
 
 
