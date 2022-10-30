@@ -29,24 +29,24 @@ const SingleJob = () => {
   );
 
 
-  if (!job) {
-    return <Text>Sorry There is no job with this number</Text>;
-  }
+  // if (!job) {
+  //   return <Text>Sorry There is no job with this number</Text>;
+  // }
 
 
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const formik = useFormik({
     initialValues: {
-      id: job.id,
-      title: job.title,
-      salary: job.salary,
-      status: job.status,
-      endDate: job.endDate,
-      type: job.type,
-      description: job.description,
+      id: job?.id!,
+      title: job?.title!,
+      salary: job?.salary!,
+      status: job?.status!,
+      endDate: job?.endDate!,
+      type: job?.type!,
+      description: job?.description!,
     },
     onSubmit: (values) => {
+      console.log(values)
       updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
         toast({
           title: (await res?.statusText) || "Error",
