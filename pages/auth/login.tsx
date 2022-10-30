@@ -14,13 +14,10 @@ import { useRouter } from "next/router";
 import React, { ReactElement, useState } from "react";
 
 const login = () => {
-  // const login = useLogin((state) => state.login);
   const a = process.env.BACKEND_URL;
-  console.log(a);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Boolean | string>(false);
+  const router = useRouter();
   const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/auth/login`;
   const handleLogin = async (values: { email: string; password: string }) => {
     const request = fetch(URL, {
