@@ -8,35 +8,43 @@ import {
   Flex,
   Button,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import useJobs from "../../../../sotre/useJobs";
+
+
+
 
 const SingleJob = () => {
   const router = useRouter();
   const { id } = router.query;
   const updateJob = useJobs((state) => state.updateJob);
+  const fetchJobs = useJobs((state) => state.fetchJobs);
   const toast = useToast();
   const job = useJobs((state) =>
     state.jobs.find((job) => job.id === Number(id))
   );
-  const fetchJobs = useJobs((state) => state.fetchJobs);
 
-    if (!job) {
-      return <div>Job Not Found</div>;
-    }
 
-  
+  if (!job) {
+    return <Text>Sorry There is no job with this number</Text>;
+  }
+
+
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const formik = useFormik({
     initialValues: {
       id: job.id,
-      title: job?.title,
-      salary: job?.salary,
-      status: job?.status,
-      endDate: job?.endDate,
-      type: job?.type,
-      description: job?.description,
+      title: job.title,
+      salary: job.salary,
+      status: job.status,
+      endDate: job.endDate,
+      type: job.type,
+      description: job.description,
     },
     onSubmit: (values) => {
       updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
@@ -51,6 +59,7 @@ const SingleJob = () => {
       });
     },
   });
+
 
 
   return (

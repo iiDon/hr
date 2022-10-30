@@ -25,7 +25,7 @@ const Jobstable = () => {
   const jobsPerPage = 10;
   const lastPostIndex = currentPage * jobsPerPage;
   const firstPostIndex = lastPostIndex - jobsPerPage;
-  const currentJobs = jobs?.slice(firstPostIndex, lastPostIndex);
+  const currentJobs = jobs?.reverse().slice(firstPostIndex, lastPostIndex);
 
   useEffect(() => {
     console.log(jobs);
@@ -133,7 +133,7 @@ const Jobstable = () => {
                   <Td textAlign="center" border="1px">
                     {job.endDate?.substring(0, 10)}
                   </Td>
-                  <Td textAlign="center" border="1px">
+                  <Td border="1px">
                     <Actions jobId={job.id!} />
                   </Td>
                 </Tr>
