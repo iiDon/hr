@@ -15,24 +15,19 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useJobs from "../../../../sotre/useJobs";
 
-
-
-
 const SingleJob = () => {
   const router = useRouter();
   const { id } = router.query;
+
   const updateJob = useJobs((state) => state.updateJob);
+
   const fetchJobs = useJobs((state) => state.fetchJobs);
+
   const toast = useToast();
+
   const job = useJobs((state) =>
     state.jobs.find((job) => job.id === Number(id))
   );
-
-
-
-
-
-
   const formik = useFormik({
     initialValues: {
       id: job?.id!,
@@ -44,7 +39,7 @@ const SingleJob = () => {
       description: job?.description!,
     },
     onSubmit: (values) => {
-      console.log(values)
+      console.log(values);
       updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
         toast({
           title: (await res?.statusText) || "Error",
@@ -58,11 +53,9 @@ const SingleJob = () => {
     },
   });
 
-  if (!job) {
-    return <Text>Sorry There is no job with this number</Text>;
-  }
-
-
+  // if (!job) {
+  //   return <Text>Sorry There is no job with this number</Text>;
+  // }
 
   return (
     <>
