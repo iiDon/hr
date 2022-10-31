@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import useJobs, { IJob } from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
