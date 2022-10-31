@@ -1,20 +1,17 @@
 import { Flex, FormControl, FormLabel, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Certificate from "../../../components/Condidates/Certificate";
-import Educations from "../../../components/Condidates/Educations";
-import Experince from "../../../components/Condidates/Experince";
-import PersonalInfo from "../../../components/Condidates/PersonalInfo";
-import Skills from "../../../components/Condidates/Skills";
-import useCondidates from "../../../sotre/useCondidates";
-import { ICondidate, IEducation, IExperince } from "../sotre/useCondidates";
+import Certificate from "../components/Condidates/Certificate";
+import Educations from "../components/Condidates/Educations";
+import Experince from "../components/Condidates/Experince";
+import PersonalInfo from "../components/Condidates/PersonalInfo";
+import Skills from "../components/Condidates/Skills";
+import useCondidates from "../sotre/useCondidates";
 
 const Condidate = () => {
   const router = useRouter();
   const { id } = router.query;
   const condidate = useCondidates((state) =>
-    state.condidates.find(
-      (condidate: ICondidate) => condidate.id === Number(id)
-    )
+    state.condidates.find((condidate) => condidate.id === Number(id))
   );
 
   return (
@@ -50,7 +47,7 @@ const Condidate = () => {
             >
               Education
             </FormLabel>
-            {condidate?.education.map((edu: IEducation, index: number) => (
+            {condidate?.education.map((edu, index) => (
               <>
                 <Educations
                   key={index}
@@ -79,7 +76,7 @@ const Condidate = () => {
             >
               Experiences
             </FormLabel>
-            {condidate?.experince.map((exp: IExperince, index: number) => (
+            {condidate?.experince.map((exp, index) => (
               <>
                 <Experince
                   key={index}
