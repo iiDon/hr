@@ -5,9 +5,9 @@ import Educations from "../components/Candidates/Educations";
 import Experince from "../components/Candidates/Experince";
 import PersonalInfo from "../components/Candidates/PersonalInfo";
 import Skills from "../components/Candidates/Skills";
-import usecandidates from "../sotre/usecandidates";
+import usecandidates from "../sotre/useCandidates";
 
-const candidate = () => {
+const Candidate = () => {
   const router = useRouter();
   const { id } = router.query;
   const candidate = usecandidates((state) =>
@@ -150,4 +150,4 @@ const candidate = () => {
   );
 };
 
-export default candidate;
+export default Candidate;
