@@ -93,8 +93,10 @@ const Educations = (Props: Props) => {
         borderColor="gray.200"
         justifyContent="space-between"
       >
-        <FormLabel fontSize="sm">School:</FormLabel>
-        <Text fontSize="sm">{Props.university}</Text>
+        <FormLabel fontSize="sm">GPA:</FormLabel>
+        <Text fontSize="sm">
+          {Props.gpa}/{Props.gpaOf}
+        </Text>
       </Flex>
     </>
   );
