@@ -36,7 +36,7 @@ const Jobstable = () => {
     }
   }, []);
 
-  const header = ["Title", "Condidates", "Status", "Close At", "Actions"];
+  const header = ["Title", "Candidates", "Status", "Close At", "Actions"];
   const [filterd, setFilterd] = useState("");
 
   if (!isFetched) {
@@ -112,7 +112,7 @@ const Jobstable = () => {
                 <Tr key={job.id} textColor="blue.900">
                   <Td border="1px">{job.title}</Td>
                   <Td textAlign="center" border="1px">
-                    {job?.condidate?.length || 0}
+                    {job?.candidate?.length || 0}
                   </Td>
                   <Td textAlign="center" border="1px">
                     <Box

@@ -2,16 +2,16 @@ import { getCookie } from "cookies-next";
 import create from "zustand";
 import { IJob } from "./useJobs";
 
-export interface ICondidateState {
+export interface IcandidateState {
   count: number;
   next: string | null;
   previous: string | null;
   isFetched: boolean;
-  condidates: ICondidate[];
-  fetchCondidates: () => any;
+  candidates: ICandidate[];
+  fetchcandidates: () => any;
 }
 
-export interface ICondidate {
+export interface ICandidate {
   id: number | undefined;
   fullName: string;
   created: string;
@@ -75,13 +75,13 @@ export interface IEducation {
 
 const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/`;
 
-const useCondidates = create<ICondidateState>()((set, get) => ({
+const useCandidates = create<IcandidateState>()((set, get) => ({
   count: 0,
   next: null,
   previous: null,
   isFetched: false,
-  condidates: [],
-  fetchCondidates: async () => {
+  candidates: [],
+  fetchcandidates: async () => {
     const res = await fetch(URL + "job/candidate/", {
       method: "GET",
       headers: {
@@ -95,10 +95,10 @@ const useCondidates = create<ICondidateState>()((set, get) => ({
       count: data.count as number,
       next: data.next,
       previous: data.previous,
-      condidates: data.results as ICondidate[],
+      candidates: data.results as ICandidate[],
       isFetched: true,
     });
   },
 }));
 
-export default useCondidates;
+export default useCandidates;

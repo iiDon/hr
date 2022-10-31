@@ -1,13 +1,13 @@
 import { TableContainer } from "@chakra-ui/react";
 import React from "react";
-import CondidatesTable from "../../../components/Condidates/Condidatstable";
+import CandidatesTable from "../../../components/Candidates/Candidatstable";
 
-const condidates = () => {
+const candidates = () => {
   return (
     <TableContainer py="5rem" px="2rem">
-      <CondidatesTable />
+      <CandidatesTable />
     </TableContainer>
   );
 };
 
-export default condidates;
+export default candidates;

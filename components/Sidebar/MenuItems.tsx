@@ -31,9 +31,9 @@ const MenuItems = () => {
       isActive: false,
     },
     {
-      name: "All condidates",
+      name: "All Candidates",
       icon: <AiFillFileUnknown />,
-      link: "/admin/condidates",
+      link: "/admin/candidates",
       isActive: false,
     },
     {

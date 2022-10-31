@@ -1,19 +1,19 @@
 import { Button, Flex, VStack } from "@chakra-ui/react";
 
 interface IPagination {
-  totalCondidates: number;
-  condidatePerPage: number;
+  totalcandidates: number;
+  candidatePerPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Pagination = ({
-  totalCondidates,
-  condidatePerPage,
+  totalcandidates,
+  candidatePerPage,
   setCurrentPage,
 }: IPagination) => {
   const pages = [];
 
-  for (let i = 1; i <= Math.ceil(totalCondidates / condidatePerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalcandidates / candidatePerPage); i++) {
     pages.push(i);
   }
 

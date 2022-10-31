@@ -9,7 +9,7 @@ export const middleware = async (request: NextRequest) => {
     const routes = [
       "/admin",
       "/admin/jobs",
-      "/admin/condidates",
+      "/admin/candidates",
       "/admin/jobs/new-job",
     ];
     return routes.includes(request.nextUrl.pathname);

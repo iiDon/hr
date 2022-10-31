@@ -1,18 +1,18 @@
 import { Flex, FormControl, FormLabel, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Certificate from "../../../components/Condidates/Certificate";
-import Educations from "../../../components/Condidates/Educations";
-import Experince from "../../../components/Condidates/Experince";
-import Languages from "../../../components/Condidates/Languages";
-import PersonalInfo from "../../../components/Condidates/PersonalInfo";
-import Skills from "../../../components/Condidates/Skills";
-import useCondidates from "../../../sotre/useCondidates";
+import Certificate from "../../../components/Candidates/Certificate";
+import Educations from "../../../components/Candidates/Educations";
+import Experince from "../../../components/Candidates/Experince";
+import Languages from "../../../components/Candidates/Languages";
+import PersonalInfo from "../../../components/Candidates/PersonalInfo";
+import Skills from "../../../components/Candidates/Skills";
+import useCandidates from "../../../sotre/useCandidates";
 
-const Condidate = () => {
+const Candidate = () => {
   const router = useRouter();
   const { id } = router.query;
-  const condidate = useCondidates((state) =>
-    state.condidates.find((condidate) => condidate.id === Number(id))
+  const candidate = useCandidates((state) =>
+    state.candidates.find((candidate) => candidate.id === Number(id))
   );
 
   return (
@@ -31,9 +31,9 @@ const Condidate = () => {
               Personal Information
             </FormLabel>
             <PersonalInfo
-              name={condidate?.fullName}
-              email={condidate?.email}
-              phone={condidate?.phone}
+              name={candidate?.fullName}
+              email={candidate?.email}
+              phone={candidate?.phone}
             />
           </FormControl>
 
@@ -48,7 +48,7 @@ const Condidate = () => {
             >
               Education
             </FormLabel>
-            {condidate?.education.map((edu, index) => (
+            {candidate?.education.map((edu, index) => (
               <>
                 <Educations
                   key={index}
@@ -63,9 +63,7 @@ const Condidate = () => {
               </>
             ))}
           </FormControl>
-        </Flex>
 
-        <Flex justifyContent="space-between" w="100%">
           {/* Experiences */}
           <FormControl m={2} bgColor="white" rounded={5}>
             <FormLabel
@@ -77,7 +75,7 @@ const Condidate = () => {
             >
               Experiences
             </FormLabel>
-            {condidate?.experince.map((exp, index) => (
+            {candidate?.experince.map((exp, index) => (
               <>
                 <Experince
                   key={index}
@@ -92,7 +90,9 @@ const Condidate = () => {
               </>
             ))}
           </FormControl>
+        </Flex>
 
+        <Flex justifyContent="space-between" w="100%">
           {/* Certificate */}
           <FormControl m={2} bgColor="white" rounded={5}>
             <FormLabel
@@ -104,7 +104,7 @@ const Condidate = () => {
             >
               Certificates
             </FormLabel>
-            {condidate?.certificate.map((exp, index) => (
+            {candidate?.certificate.map((exp, index) => (
               <>
                 <Certificate
                   key={index}
@@ -119,9 +119,7 @@ const Condidate = () => {
               </>
             ))}
           </FormControl>
-        </Flex>
 
-        <Flex justifyContent="space-between" w="100%">
           {/* SKills */}
           <FormControl m={2} bgColor="white" rounded={5}>
             <FormLabel
@@ -133,7 +131,7 @@ const Condidate = () => {
             >
               Skills
             </FormLabel>
-            {condidate?.skill.map((exp, index) => (
+            {candidate?.skill.map((exp, index) => (
               <>
                 <Skills
                   key={index}
@@ -157,7 +155,7 @@ const Condidate = () => {
             >
               Languages
             </FormLabel>
-            {condidate?.skill.map((exp, index) => (
+            {candidate?.skill.map((exp, index) => (
               <>
                 <Languages
                   key={index}
@@ -170,9 +168,11 @@ const Condidate = () => {
             ))}
           </FormControl>
         </Flex>
+
+        <Flex justifyContent="space-between" w="100%"></Flex>
       </VStack>
     </>
   );
 };
 
-export default Condidate;
+export default Candidate;

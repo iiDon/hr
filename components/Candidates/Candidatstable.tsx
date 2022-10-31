@@ -10,29 +10,39 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import useCondidates from "../../sotre/useCondidates";
-import Actions from "../Condidates/Actions";
+import usecandidates from "../../sotre/useCandidates";
+import Actions from "./Actions";
 import Pagination from "../Jobs/Pagination";
-const CondidatesTable = () => {
-  const condidates = useCondidates((state) => state.condidates);
-  const fetchCondidates = useCondidates((state) => state.fetchCondidates);
-  const isFetched = useCondidates((state) => state.isFetched);
-  condidates && console.log(condidates);
+const CandidatesTable = () => {
+  const candidates = usecandidates((state) => state.candidates);
+  const fetchcandidates = usecandidates((state) => state.fetchcandidates);
+  const isFetched = usecandidates((state) => state.isFetched);
+  candidates && console.log(candidates);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const CondidatesPerPage = 10;
-  const lastPostIndex = currentPage * CondidatesPerPage;
-  const firstPostIndex = lastPostIndex - CondidatesPerPage;
-  const currentCondidates = condidates?.slice(firstPostIndex, lastPostIndex);
+  const candidatesPerPage = 10;
+  const lastPostIndex = currentPage * candidatesPerPage;
+  const firstPostIndex = lastPostIndex - candidatesPerPage;
+  const currentcandidates = candidates?.slice(firstPostIndex, lastPostIndex);
+  const header = ["Name", "Education", "Email", "Phone", "Actions"];
+  const [filterd, setFilterd] = useState("");
 
   useEffect(() => {
     if (!isFetched) {
-      fetchCondidates();
+      fetchcandidates();
     }
   }, []);
-
-  const header = ["Name", "Education", "Email", "Phone", "Actions"];
-  const [filterd, setFilterd] = useState("");
+  if (!isFetched) {
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.700"
+        size="xl"
+      />
+    );
+  }
 
   // // Header of the table
   const handleHeader = (item: string): JSX.Element => {
@@ -88,31 +98,31 @@ const CondidatesTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {currentCondidates
-            ?.filter((condidate) =>
-              condidate.fullName?.toLowerCase().includes(filterd.toLowerCase())
+          {currentcandidates
+            ?.filter((candidate) =>
+              candidate.fullName?.toLowerCase().includes(filterd.toLowerCase())
             )
-            .map((condidate) => (
-              <Tr key={condidate.id} textColor="blue.900">
-                <Td border="1px">{condidate.fullName}</Td>
+            .map((candidate) => (
+              <Tr key={candidate.id} textColor="blue.900">
+                <Td border="1px">{candidate.fullName}</Td>
                 <Td textAlign="center" border="1px">
-                  {condidate.education[0].major}
+                  {candidate.education[0].major}
                 </Td>
                 <Td textAlign="center" border="1px">
-                  {condidate.email}
+                  {candidate.email}
                 </Td>
                 <Td textAlign="center" border="1px">
-                  {condidate.phone}
+                  {candidate.phone}
                 </Td>
                 <Td textAlign="center" border="1px">
-                  <Actions condidateId={condidate.id} />
+                  <Actions candidateId={candidate.id} />
                 </Td>
               </Tr>
             ))}
         </Tbody>
         <Pagination
-          totalJobs={condidates?.length}
-          jobsPerPage={CondidatesPerPage}
+          totalJobs={candidates?.length}
+          jobsPerPage={candidatesPerPage}
           setCurrentPage={setCurrentPage}
         />
       </Table>
@@ -120,4 +130,4 @@ const CondidatesTable = () => {
   );
 };
 
-export default CondidatesTable;
+export default CandidatesTable;

@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Flex, Text } from "@chakra-ui/react";
+import { FormLabel, Flex, Text } from "@chakra-ui/react";
 
 interface Props {
   name?: string;

@@ -3,14 +3,14 @@ import create from "zustand";
 
 export interface IJob {
   id: number | undefined;
-  title: string ;
+  title: string;
   salary?: string | undefined;
   status: string;
   endDate?: string | undefined;
   type?: string | undefined;
   created?: string;
   description?: string;
-  condidate?: number[];
+  candidate?: number[];
 }
 
 interface JobState {

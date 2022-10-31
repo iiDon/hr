@@ -13,7 +13,7 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import useJobs from "../../../../sotre/useJobs";
+import useJobs, { IJob } from "../../../../sotre/useJobs";
 
 const SingleJob = () => {
   const router = useRouter();
@@ -29,53 +29,35 @@ const SingleJob = () => {
     state.jobs.find((job) => job.id === Number(id))
   );
 
-
-
-
-
   const formik = useFormik({
     initialValues: {
-      id: 0,
-      title: 'job?.title',
-      salary: 'job?.salary',
-      status: 'job?.status',
-      endDate: 'job?.endDate',
-      type: 'job?.type',
-      description: 'job?.description',
+      id: job?.id,
+      title: job!?.title,
+      salary: job?.salary,
+      status: job!?.status,
+      endDate: job?.endDate,
+      type: job?.type,
+      description: job?.description,
     },
-    onSubmit: (values) => {
+    onSubmit: (values: IJob) => {
       console.log(values);
 
-      // updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
-      //   toast({
-      //     title: (await res?.statusText) || "Error",
-      //     status: `${res.ok ? "success" : "error"}`,
-      //     duration: 6000,
-      //     isClosable: false,
-      //   });
-      //   fetchJobs();
-      //   router.push("/admin/jobs");
-      // });
-
-
-
-
-
-
-
-
-
+      updateJob(values).then(async (res: { statusText: any; ok: boolean }) => {
+        toast({
+          title: (await res?.statusText) || "Error",
+          status: `${res.ok ? "success" : "error"}`,
+          duration: 6000,
+          isClosable: false,
+        });
+        fetchJobs();
+        router.push("/admin/jobs");
+      });
     },
   });
-
-
 
   if (!job) {
     return <Text>No Job</Text>;
   }
-
-
-
 
   return (
     <>
