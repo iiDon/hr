@@ -84,6 +84,18 @@ const Educations = (Props: Props) => {
         <FormLabel fontSize="sm">School:</FormLabel>
         <Text fontSize="sm">{Props.university}</Text>
       </Flex>
+      <Flex
+        _hover={{ bgColor: "gray.100" }}
+        px={4}
+        py={1}
+        alignItems="center"
+        borderBottom="1px"
+        borderColor="gray.200"
+        justifyContent="space-between"
+      >
+        <FormLabel fontSize="sm">School:</FormLabel>
+        <Text fontSize="sm">{Props.university}</Text>
+      </Flex>
     </>
   );
 };

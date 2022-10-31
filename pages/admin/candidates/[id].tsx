@@ -27,6 +27,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Personal Information
             </FormLabel>
@@ -45,6 +46,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Education
             </FormLabel>
@@ -72,6 +74,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Experiences
             </FormLabel>
@@ -101,6 +104,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Certificates
             </FormLabel>
@@ -128,6 +132,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Skills
             </FormLabel>
@@ -152,6 +157,7 @@ const Candidate = () => {
               roundedTop={5}
               p={3}
               w="100%"
+              textAlign="center"
             >
               Languages
             </FormLabel>
