@@ -19,10 +19,10 @@ export interface ICondidate {
   email: string;
   phone: string;
   job: IJob[];
-  skills: ISkill[];
-  certificates: ICertificate[];
-  experiences: IExperince[];
-  languages: ILanguage[];
+  skill: ISkill[];
+  certificate: ICertificate[];
+  experince: IExperince[];
+  language: ILanguage[];
   education: IEducation[];
 }
 
@@ -36,7 +36,7 @@ export interface ISkill {
 export interface ICertificate {
   company: string;
   title: string;
-  descreption: string;
+  description: string;
   startDate: string;
   endDate: string;
   created: string;
@@ -46,7 +46,7 @@ export interface ICertificate {
 export interface IExperince {
   company: string;
   title: string;
-  descreption: string;
+  description: string;
   startDate: string;
   endDate: string;
   created: string;

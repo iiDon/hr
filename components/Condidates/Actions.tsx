@@ -1,4 +1,5 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiFillEye } from "react-icons/ai";
@@ -14,20 +15,13 @@ const Actions = ({ condidateId }: Props) => {
     return <></>;
   }
 
-  const viewCondidate = () => {
-    console.log("view", condidateId);
-  };
-
   return (
     <Flex>
-      <Button
-        onClick={viewCondidate}
-        mx="0.1rem"
-        bgColor="blue.900"
-        textColor="white"
-      >
-        <AiFillEye />
-      </Button>
+      <Link href={`/admin/condidates/${condidateId}`}>
+        <Button mx="0.1rem" bgColor="blue.900" textColor="white">
+          <AiFillEye />
+        </Button>
+      </Link>
     </Flex>
   );
 };

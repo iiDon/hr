@@ -5,14 +5,10 @@ import {
   Th,
   Tbody,
   Td,
-  Button,
-  Flex,
   Input,
-  Box,
   Spinner,
+  Flex,
 } from "@chakra-ui/react";
-import ICondidate from "../../sotre/useCondidates";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import useCondidates from "../../sotre/useCondidates";
 import Actions from "../Condidates/Actions";
