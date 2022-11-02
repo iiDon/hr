@@ -3,8 +3,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
 import Layout from "../components/Layouts/Layout";
 import { ReactElement, useEffect } from "react";
-import { hasCookie, getCookie, deleteCookie } from "cookies-next";
-import { isAuthenticated } from "../helpers/auth";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import useAuth from "../sotre/useAuth";
@@ -24,7 +22,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     checkAuth();
 
-    if (!isLoggedIn) {
+    if (!isLoggedIn && router.pathname === "/dashboard/*") {
       router.push("/auth/login");
     }
   }, [isLoggedIn]);

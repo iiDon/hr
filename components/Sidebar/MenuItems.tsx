@@ -1,5 +1,5 @@
 import { Flex, ListItem, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import  { useState } from "react";
 import Link from "next/link";
 import {
   AiOutlineHome,
@@ -7,7 +7,6 @@ import {
   AiFillFolderOpen,
   AiFillFileUnknown,
 } from "react-icons/ai";
-import { deleteCookie } from "cookies-next";
 import router from "next/router";
 import useAuth from "../../sotre/useAuth";
 const MenuItems = () => {

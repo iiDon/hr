@@ -1,5 +1,4 @@
-import { Button, Flex, VStack } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Button, Flex } from "@chakra-ui/react";
 
 interface IPagination {
   totalJobs: number;

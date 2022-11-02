@@ -1,4 +1,4 @@
-import { Button, Flex, VStack } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 
 interface IPagination {
   totalcandidates: number;

@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 interface DropdownProps {
   setJobState: (value: string) => void;
 }

@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { AiFillNotification } from "react-icons/ai";
 import useAuth from "../sotre/useAuth";
