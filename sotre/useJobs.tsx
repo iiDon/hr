@@ -14,11 +14,13 @@ export interface IJob {
 }
 
 interface JobState {
-  [x: string]: any;
   count: number;
   next: any;
   isFetched: boolean;
   jobs: IJob[];
+  OpenedJobs: IJob[];
+  fetchOpenedJobs: () => void;
+  isFetchedOpenedJobs: boolean;
   fetchJobs: () => any;
   addJob: (job: IJob) => any;
   deleteJob: (id: number) => any;
@@ -32,6 +34,11 @@ const useJobs = create<JobState>()((set, get) => ({
   next: null,
   isFetched: false,
   jobs: [],
+
+  // opened jobs
+  isFetchedOpenedJobs: false,
+  OpenedJobs: [],
+
   fetchJobs: async () => {
     const res = await fetch(URL + "job/job/all/", {
       method: "GET",
@@ -94,6 +101,14 @@ const useJobs = create<JobState>()((set, get) => ({
     //   return res;
     // }
     return res;
+  },
+  fetchOpenedJobs: async () => {
+    const res = await fetch(URL + "job/job/");
+    const data = await res.json();
+    set({
+      OpenedJobs: data.results as IJob[],
+      isFetchedOpenedJobs: true,
+    });
   },
 }));
 
