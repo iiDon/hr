@@ -7,6 +7,7 @@ import { hasCookie, getCookie, deleteCookie } from "cookies-next";
 import { isAuthenticated } from "../helpers/auth";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import useAuth from "../sotre/useAuth";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactElement;
@@ -17,6 +18,17 @@ type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const router = useRouter();
+  const { isLoggedIn, checkAuth } = useAuth((state) => state);
+
+  useEffect(() => {
+    checkAuth();
+
+    if (!isLoggedIn) {
+      router.push("/auth/login");
+    }
+  }, [isLoggedIn]);
+
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (

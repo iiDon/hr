@@ -13,7 +13,7 @@ const Actions = ({ candidateId }: Props) => {
 
   return (
     <Flex>
-      <Link href={`/admin/candidates/${candidateId}`}>
+      <Link href={`/dashboard/candidates/${candidateId}`}>
         <Button mx="0.1rem" bgColor="blue.900" textColor="white">
           <AiFillEye />
         </Button>

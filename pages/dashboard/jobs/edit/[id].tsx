@@ -49,7 +49,7 @@ const SingleJob = () => {
           isClosable: false,
         });
         fetchJobs();
-        router.push("/admin/jobs");
+        router.push("/dashboard/jobs");
       });
     },
   });

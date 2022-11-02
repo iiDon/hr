@@ -9,31 +9,32 @@ import {
 } from "react-icons/ai";
 import { deleteCookie } from "cookies-next";
 import router from "next/router";
+import useAuth from "../../sotre/useAuth";
 const MenuItems = () => {
   const [menu, setMenu] = useState([
     {
       name: "Home",
       icon: <AiOutlineHome />,
-      link: "/admin",
+      link: "/dashboard",
       isActive: true,
     },
 
     {
       name: "Jobs",
       icon: <AiFillFolderOpen />,
-      link: "/admin/jobs",
+      link: "/dashboard/jobs",
       isActive: false,
     },
     {
       name: "Post a new job",
       icon: <AiFillFolderAdd />,
-      link: "/admin/jobs/new-job",
+      link: "/dashboard/jobs/new-job",
       isActive: false,
     },
     {
       name: "All Candidates",
       icon: <AiFillFileUnknown />,
-      link: "/admin/candidates",
+      link: "/dashboard/candidates",
       isActive: false,
     },
     {
@@ -42,12 +43,12 @@ const MenuItems = () => {
       link: "/auth/login",
       isActive: false,
       gap: true,
-      onClick: () => logout(),
+      onClick: () => logoutHanlder(),
     },
   ]);
-
-  const logout = async () => {
-    deleteCookie("token");
+  const logOut = useAuth((state) => state.logOut);
+  const logoutHanlder = async () => {
+    logOut();
     router.push("/auth/login");
   };
 

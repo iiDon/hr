@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-const Index = () => {
+const Home = () => {
+  
   return (
     <div>index</div>
   )
 }
 
-export default Index
+Home.getLayout = function (page: ReactElement) {
+  return <>{page}</>;
+};
+export default Home

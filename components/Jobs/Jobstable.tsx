@@ -83,7 +83,7 @@ const Jobstable = () => {
           size="md"
           type="text"
         />
-        <Link href="/admin/jobs/new-job">
+        <Link href="/dashboard/jobs/new-job">
           <Button
             mb="2rem"
             bgColor="blue.900"

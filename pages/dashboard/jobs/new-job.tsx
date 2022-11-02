@@ -44,7 +44,7 @@ const NewJob = () => {
       });
 
       if (res.ok) {
-        router.push("/admin/jobs");
+        router.push("/dashboard/jobs");
       }
     },
   });
