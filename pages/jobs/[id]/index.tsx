@@ -34,16 +34,35 @@ const Job = () => {
         alignItems="center"
         bg="gray.50"
         rounded="md"
-        _hover={{ shadow: "md", transition: "all 0.2s ease-in-out" }}
         p={3}
       >
-        <VStack>
-          <Flex justifyContent="space-between" pb={4}>
+        <VStack w="100%">
+          <Flex justifyContent="space-between" pb={4} w="100%">
             <Text as="b">{job.title}</Text>
-            <Text>{job.type}</Text>
+            {job.type && (
+              <Text bg="gray.200" p={1} rounded="md">
+                {job.type}
+              </Text>
+            )}
           </Flex>
-          <Text>{job.description}</Text>
-          <Text py={4} borderBottom={"1px"}>
+          <VStack w="100%" bgColor="white" p={4} border={12}>
+            {job.description!.split("\n").map(function (item) {
+              return (
+                <Text textAlign="left" w="100%">
+                  {item}
+                  <br />
+                </Text>
+              );
+            })}
+          </VStack>
+          <Text
+            textAlign="left"
+            w="100%"
+            bgColor="white"
+            p={4}
+            border={12}
+            py={4}
+          >
             End Date: {job.endDate}
           </Text>
           <Link href={`${job.id}/apply`}>

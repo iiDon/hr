@@ -38,9 +38,14 @@ const Home = () => {
           >
             <Flex justifyContent="space-between" pb={4}>
               <Text as="b">{job.title}</Text>
-              <Text>{job.type}</Text>
+
+              {job.type && (
+                <Text bg="gray.200" p={1} rounded="md">
+                  {job.type}
+                </Text>
+              )}
             </Flex>
-            <Text>{job.description?.substring(0, 10) + "..."}</Text>
+            <Text>{job.description?.substring(0, 50) + "..."}</Text>
             <Text py={4} borderBottom={"1px"}>
               End Date: {job.endDate}
             </Text>

@@ -1,8 +1,10 @@
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormLabel,
+  Image,
   Input,
   Text,
   VStack,
@@ -11,6 +13,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import useAuth from "../../sotre/useAuth";
+// https://sr.edu.sa/site/wp-content/themes/sru-wp/video/video.mp4
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -50,11 +53,29 @@ const Login = () => {
 
   return (
     <Flex justifyContent={"center"} alignItems={"center"} h="100vh">
+      <Box
+        position="absolute"
+        objectFit="cover"
+        width="100%"
+        controls={false}
+        height="100%"
+        zIndex={-1}
+        as="video"
+        src="https://sr.edu.sa/site/wp-content/themes/sru-wp/video/video.mp4"
+        opacity={1}
+        autoPlay
+        loop
+        muted
+        playsInline
+        filter="brightness(40%)"
+      />
       <form style={{ width: "30%" }} onSubmit={formik.handleSubmit}>
         <VStack>
+          <Image src="/logo.png" />
           <FormControl>
-            <FormLabel>Email</FormLabel>
+            <FormLabel textColor="white">Email</FormLabel>
             <Input
+              textColor="white"
               isRequired
               type="email"
               name="email"
@@ -64,8 +85,9 @@ const Login = () => {
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Password</FormLabel>
+            <FormLabel textColor="white">Password</FormLabel>
             <Input
+              textColor="white"
               isRequired
               type="password"
               name="password"

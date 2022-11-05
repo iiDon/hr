@@ -65,12 +65,12 @@ export interface IEducation {
   degree: string;
   major: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   gpa: string;
   gpaOf: string;
-  descreption: string;
-  created: string;
-  lastUpdated: string;
+  descreption?: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 const URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/`;

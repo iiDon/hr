@@ -103,7 +103,15 @@ const SingleJob = () => {
           <Flex w="100%">
             <FormControl pr="1rem">
               <FormLabel>Type:</FormLabel>
-              <Input type="number" border="1px" borderColor="black" />
+              <Input
+                type="text"
+                name="type"
+                id="type"
+                value={formik.values.type}
+                onChange={formik.handleChange}
+                border="1px"
+                borderColor="black"
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Salary:</FormLabel>
