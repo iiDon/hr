@@ -6,7 +6,6 @@ interface IPagination {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
 const Pagination = ({
   totalJobs,
   jobsPerPage,
@@ -19,9 +18,14 @@ const Pagination = ({
   }
 
   return (
-    <Flex justifyContent="center">
+    <Flex
+      justifyContent="center"
+      m="auto"
+      textAlign="center"
+      alignItems="center"
+    >
       {pages.map((page) => {
-        return (
+        return page < 5 ? (
           <Button
             m={3}
             bgColor="blue.900"
@@ -33,7 +37,7 @@ const Pagination = ({
           >
             {page}
           </Button>
-        );
+        ) : null;
       })}
     </Flex>
   );

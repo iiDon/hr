@@ -8,6 +8,7 @@ import {
   Input,
   Spinner,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import usecandidates from "../../sotre/useCandidates";
@@ -78,9 +79,10 @@ const CandidatesTable = () => {
     <>
       <Flex justifyContent="space-between">
         <Input
+          w={"40%"}
           mb={2}
           borderColor="blue.900"
-          outline="px"
+          outline="2px"
           onChange={(e) => {
             setFilterd(e.target.value);
           }}
@@ -120,11 +122,11 @@ const CandidatesTable = () => {
               </Tr>
             ))}
         </Tbody>
-        <Pagination
-          totalJobs={candidates?.length}
-          jobsPerPage={candidatesPerPage}
-          setCurrentPage={setCurrentPage}
-        />
+          <Pagination
+            totalJobs={candidates?.length}
+            jobsPerPage={candidatesPerPage}
+            setCurrentPage={setCurrentPage}
+          />
       </Table>
     </>
   );

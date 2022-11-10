@@ -40,7 +40,7 @@ const useJobs = create<JobState>()((set, get) => ({
   OpenedJobs: [],
 
   fetchJobs: async () => {
-    const res = await fetch(URL + "job/job/all/", {
+    const res = await fetch(URL + "job/job/all/?limit=200&ordering=-id", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
