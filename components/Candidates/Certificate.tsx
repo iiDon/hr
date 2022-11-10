@@ -3,11 +3,11 @@ import { Flex, FormLabel, Text } from "@chakra-ui/react";
 interface Props {
   company: string;
   title: string;
-  description: string;
+  description: string | undefined;
   startDate: string;
   endDate: string;
-  created: string;
-  lastUpdated: string;
+  created: string | undefined;
+  lastUpdated: string | undefined;
 }
 
 const Certificate = (Props: Props) => {

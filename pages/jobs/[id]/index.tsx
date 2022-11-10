@@ -46,9 +46,9 @@ const Job = () => {
             )}
           </Flex>
           <VStack w="100%" bgColor="white" p={4} border={12}>
-            {job.description!.split("\n").map(function (item) {
+            {job.description!.split("\n").map(function (item, index) {
               return (
-                <Text textAlign="left" w="100%">
+                <Text textAlign="left" w="100%" key={index}>
                   {item}
                   <br />
                 </Text>

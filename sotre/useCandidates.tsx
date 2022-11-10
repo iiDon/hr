@@ -1,6 +1,5 @@
 import { getCookie } from "cookies-next";
 import create from "zustand";
-import { IJob } from "./useJobs";
 
 export interface IcandidateState {
   count: number;
@@ -9,16 +8,17 @@ export interface IcandidateState {
   isFetched: boolean;
   candidates: ICandidate[];
   fetchcandidates: () => any;
+  apply: (data: ICandidate) => any;
 }
 
 export interface ICandidate {
-  id: number | undefined;
+  id?: number | undefined;
   fullName: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
   email: string;
   phone: string;
-  job: IJob[];
+  job: [{ id: number }];
   skill: ISkill[];
   certificate: ICertificate[];
   experince: IExperince[];
@@ -29,35 +29,35 @@ export interface ICandidate {
 export interface ISkill {
   name: string;
   level: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 export interface ICertificate {
   company: string;
   title: string;
-  description: string;
+  description?: string;
   startDate: string;
   endDate: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 export interface IExperince {
   company: string;
   title: string;
-  description: string;
+  description?: string;
   startDate: string;
   endDate: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 export interface ILanguage {
   name: string;
   level: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 export interface IEducation {
@@ -67,7 +67,7 @@ export interface IEducation {
   startDate: string;
   endDate?: string;
   gpa: string;
-  gpaOf: string;
+  gpa_of: string;
   descreption?: string;
   created?: string;
   lastUpdated?: string;
@@ -81,8 +81,9 @@ const useCandidates = create<IcandidateState>()((set, get) => ({
   previous: null,
   isFetched: false,
   candidates: [],
+  filtered: [],
   fetchcandidates: async () => {
-    const res = await fetch(URL + "job/candidate/", {
+    const res = await fetch(URL + "job/candidate/?limit=200&ordering=-id", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -98,6 +99,18 @@ const useCandidates = create<IcandidateState>()((set, get) => ({
       candidates: data.results as ICandidate[],
       isFetched: true,
     });
+  },
+  apply: async (values: ICandidate) => {
+    const res = await fetch(URL + "/job/candidate/create/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    const data = await res.json();
+
+    return data;
   },
 }));
 

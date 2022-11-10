@@ -1,4 +1,5 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
@@ -25,14 +26,16 @@ const Actions = ({ jobId }: Props) => {
   return (
     <Flex>
       <OnDeleteModal jobId={jobId} isOpen={isOpen} onClose={onClose} />
-      <Button
-        onClick={viewJob}
-        mx="0.1rem"
-        bgColor="blue.900"
-        textColor="white"
-      >
-        <AiFillEye />
-      </Button>
+      <Link href={`/dashboard/jobs/${jobId}`}>
+        <Button
+          onClick={viewJob}
+          mx="0.1rem"
+          bgColor="blue.900"
+          textColor="white"
+        >
+          <AiFillEye />
+        </Button>
+      </Link>
       <Button
         onClick={editJob}
         mx="0.1rem"

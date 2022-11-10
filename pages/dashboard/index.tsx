@@ -1,5 +1,8 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import AllChart from "../../components/Home/AllChart";
+import CandidatesChart from "../../components/Home/CandidatesChart";
+import JobsChart from "../../components/Home/JobsChart";
 
 const Home: NextPage = () => {
   return (
@@ -7,12 +10,22 @@ const Home: NextPage = () => {
       p={4}
       templateColumns="repeat(2, 1fr)"
       templateRows="repeat(2 , 1fr)"
-      gap={700}
+      gap={5}
+      w="100%"
+      h="100%"
     >
-      <GridItem>2 </GridItem>
-      <GridItem>3 </GridItem>
-      <GridItem>4 </GridItem>
-      <GridItem>5 </GridItem>
+      <GridItem bg="white" p={2} rounded={"md"}>
+        <CandidatesChart />
+      </GridItem>
+      <GridItem bg="white" p={2} rounded={"md"}>
+        <JobsChart />
+      </GridItem>
+      <GridItem bg="white" p={2} rounded={"md"}>
+        <AllChart />
+      </GridItem>
+      <GridItem bg="white" p={2} rounded={"md"}>
+        <CandidatesChart />
+      </GridItem>
     </Grid>
   );
 };

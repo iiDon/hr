@@ -3,8 +3,8 @@ import { Flex, FormLabel, Text } from "@chakra-ui/react";
 interface Props {
   name: string;
   level: string;
-  created: string;
-  lastUpdated: string;
+  created?: string;
+  lastUpdated?: string;
 }
 
 const Languages = (Props: Props) => {
