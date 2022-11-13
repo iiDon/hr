@@ -14,9 +14,10 @@ const Candidate = () => {
   const candidate = useCandidates((state) =>
     state.candidates.find((candidate) => candidate.id === Number(id))
   );
+  console.log(candidate?.education[0]);
   return (
     <>
-      <VStack p={4} >
+      <VStack p={4}>
         <Flex justifyContent="space-between" w="100%">
           {/* Personal Info */}
           <FormControl m={2} bgColor="white" rounded={5}>
@@ -59,7 +60,7 @@ const Candidate = () => {
                   startDate={edu.startDate}
                   endDate={edu.endDate}
                   gpa={edu.gpa}
-                  gpaOf={edu.gpa_of}
+                  gpa_of={edu.gpa_of}
                 />
               </>
             ))}

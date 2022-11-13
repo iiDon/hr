@@ -1,5 +1,5 @@
 import { Flex, FormLabel, Text } from "@chakra-ui/react";
-
+import { IEducation } from "../../sotre/useCandidates";
 interface Props {
   degree?: string;
   major?: string;
@@ -10,7 +10,8 @@ interface Props {
   gpaOf?: string;
 }
 
-const Educations = (Props: Props) => {
+const Educations = (Props: IEducation) => {
+  console.log(Props.gpa_of)
   return (
     <>
       <FormLabel
@@ -95,7 +96,7 @@ const Educations = (Props: Props) => {
       >
         <FormLabel fontSize="sm">GPA:</FormLabel>
         <Text fontSize="sm">
-          {Props.gpa}/{Props.gpaOf}
+          {Props.gpa}/{Props.gpa_of}
         </Text>
       </Flex>
     </>
