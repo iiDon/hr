@@ -2,6 +2,7 @@ import { Flex, Button, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
+import Header from "../../../components/Home/Header";
 import useJobs from "../../../sotre/useJobs";
 
 const Job = () => {
@@ -27,6 +28,7 @@ const Job = () => {
 
   return (
     <>
+      <Header />
       <Flex
         m="auto"
         w="95%"

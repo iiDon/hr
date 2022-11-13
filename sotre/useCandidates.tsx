@@ -108,9 +108,7 @@ const useCandidates = create<IcandidateState>()((set, get) => ({
       },
       body: JSON.stringify(values),
     });
-    const data = await res.json();
-
-    return data;
+    return res;
   },
 }));
 

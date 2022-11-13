@@ -2,6 +2,7 @@ import { Flex, Button, VStack, Accordion, useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
+import Header from "../../../components/Home/Header";
 import CertificatesForm from "../../../components/JobForm/CertificatesForm";
 import EducationAccordion from "../../../components/JobForm/EducationForm";
 import ExperienceForm from "../../../components/JobForm/ExperienceForm";
@@ -69,15 +70,10 @@ const Apply = () => {
           isClosable: false,
         });
 
-        if (res.status === 201) {
-          // router.push("/");
-          console.log("res", res);
+        if (res.ok) {
+          router.push("/");
         }
 
-        if (!res.ok) {
-          console.log(res.status);
-          console.log("res Erorr", res);
-        }
         setLoading(false);
       }
     },
@@ -97,39 +93,42 @@ const Apply = () => {
     );
   }
   return (
-    <Flex bg="gray.50" m={4} p={4} rounded="md">
-      <VStack w="100%">
-        <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
-          <PersonalAccordion formik={formik} />
-          <EducationAccordion
-            education={education}
-            setEducation={setEducation}
-          />
-          <ExperienceForm
-            experience={experience}
-            setExperience={setExperience}
-          />
-          <CertificatesForm
-            certificate={certificate}
-            setCertificate={setCertificate}
-          />
-          <SkillsForm skill={skill} setSkill={setSkill} />
-          <LanguagesForm language={language} setLanguage={setLanguage} />
-          <Button
-            type="submit"
-            display="block"
-            m="auto"
-            bgColor="blue.900"
-            textColor="white"
-            w="100%"
-            mt={4}
-            isLoading={loading}
-          >
-            Submit
-          </Button>
-        </form>
-      </VStack>
-    </Flex>
+    <>
+      <Header />
+      <Flex bg="gray.50" m={4} p={4} rounded="md">
+        <VStack w="100%">
+          <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
+            <PersonalAccordion formik={formik} />
+            <EducationAccordion
+              education={education}
+              setEducation={setEducation}
+            />
+            <ExperienceForm
+              experience={experience}
+              setExperience={setExperience}
+            />
+            <CertificatesForm
+              certificate={certificate}
+              setCertificate={setCertificate}
+            />
+            <SkillsForm skill={skill} setSkill={setSkill} />
+            <LanguagesForm language={language} setLanguage={setLanguage} />
+            <Button
+              type="submit"
+              display="block"
+              m="auto"
+              bgColor="blue.900"
+              textColor="white"
+              w="100%"
+              mt={4}
+              isLoading={loading}
+            >
+              Submit
+            </Button>
+          </form>
+        </VStack>
+      </Flex>
+    </>
   );
 };
 
