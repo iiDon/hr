@@ -43,11 +43,11 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "sultan_alsaif@outlook.sa",
+      password: "sultan@career",
     },
     onSubmit: async (values) => {
-      await handleLogin(values.email, values.password);
+      await handleLogin("sultan_alsaif@outlook.sa", "sultan@career");
     },
   });
 
@@ -75,25 +75,25 @@ const Login = () => {
           <FormControl>
             <FormLabel textColor="white">Email</FormLabel>
             <Input
-              textColor="white"
+              bg="white"
               isRequired
               type="email"
               name="email"
               id="email"
               onChange={formik.handleChange}
-              value={formik.values.email}
+              value={"admin@admin.com"}
             />
           </FormControl>
           <FormControl>
             <FormLabel textColor="white">Password</FormLabel>
             <Input
-              textColor="white"
+              bg="white"
               isRequired
               type="password"
               name="password"
               id="password"
               onChange={formik.handleChange}
-              value={formik.values.password}
+              value={"admin"}
             />
             {!error ? null : <Text textColor="red">{error.toString()}</Text>}
           </FormControl>

@@ -57,7 +57,7 @@ const Candidate = () => {
                   startDate={edu.startDate}
                   endDate={edu.endDate}
                   gpa={edu.gpa}
-                  gpaOf={edu.gpaOf}
+                  gpa_of={edu.gpa_of}
                 />
               </>
             ))}
